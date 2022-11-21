@@ -1,7 +1,6 @@
 import json
-import pandas as pd
+#import pandas as pd
 
-###########
 val_of_int = ['business_id','name']
 
 businesses = []
@@ -15,11 +14,7 @@ for item in val_of_int:
     for business in businesses:
         middle[item][business['business_id']] = business[item]
 
-
 #df = pd.read_json(middle)
 #df.to_csv('/Users/alinaqvi/Desktop/SWE/everything.csv')
+
 print(middle)
-
-        
-
-###########
