@@ -1,19 +1,43 @@
 import json
 import pandas as pd
 
-val_of_int = ['name', 'business_id']
+#Lists of the columns wanted from each json file
+bus_columns = ['business_id', 'name', 'city', 'stars', 'review_count']
+reviews_columns = ['review_id', 'user_id', 'business_id', 'stars', 'date', 'text', 'useful', 'funny', 'cool']
+users_columns = ['user_id', 'review_count', 'yelping_since', 'useful', 'funny', 'cool', 'fans', 'elite', 'average_stars']
 
-businesses = []
-middle = {}
 
-for line in open(R"D:\UC Berkeley\CS Stuff\yeSWEcan\yeSWEcan Final Project\yelp_dataset\yelp_academic_dataset_business.json", "r", encoding = 'cp850'):
-    businesses.append(json.loads(line))
+def add_to_dict(columns, file_path):
+    '''
+    Function creates pandas dataframe using json file specified in file_path and elements specified in columns
 
-for item in val_of_int:
-    middle[item] = []
-    for business in businesses:
-        middle[item].append(business[item])
+    file_path: Full path (not relative) to json file
+    columns: List of column values to extract from json file
 
-df = pd.DataFrame.from_dict(middle)
-df.to_csv('everything.csv')
+    '''
+
+    temp_df = {}                #temporary dictionary that will be turned into dataframe
+    data_points = []            
+
+    
+    #extracts json dictionary from each value and adds them to data_points array
+    for line in open(file_path, "r", encoding = 'cp850'):
+       data_points.append(json.loads(line))
+
+    
+    #extracts columns specified in columns and adds them to temp_df
+    for item in columns:
+        temp_df[item] = []
+        for point in data_points:
+            temp_df[item].append(point[item])
+    return pd.DataFrame.from_dict(temp_df)      #returns a pandas dataframe
+
+
+#joins all dataframes created for each json. Uses .join to join dataframes that are of differnet length
+root_df = add_to_dict(bus_columns, R'D:\UC Berkeley\CS Stuff\yeSWEcan\yeSWEcan Final Project\yelp_dataset\yelp_academic_dataset_business.json')
+root_df = root_df.join(add_to_dict(reviews_columns, R'D:\UC Berkeley\CS Stuff\yeSWEcan\yeSWEcan Final Project\yelp_dataset\yelp_academic_dataset_review.json'), lsuffix='_business', rsuffix='_review')
+root_df = root_df.join(add_to_dict(users_columns, R'D:\UC Berkeley\CS Stuff\yeSWEcan\yeSWEcan Final Project\yelp_dataset\yelp_academic_dataset_user.json'), lsuffix='_review', rsuffix='_user')
+
+#converts dataframe to csv
+root_df.to_csv('everything.csv')
 
