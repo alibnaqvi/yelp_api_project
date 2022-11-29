@@ -1,8 +1,20 @@
 https://www.kaggle.com/datasets/siddharthmandgi/tripadvisor-restaurant-recommendation-data-usa
 
 
+
+
+
+
+
 #other possible datasets
 
 https://www.kaggle.com/datasets/mikhailpustovalov/scraped-data-from-ta?resource=download          
 
 https://www.kaggle.com/datasets/inigolopezrioboo/a-tripadvisor-dataset-for-nlp-tasks?select=New_York_reviews.csv
+
+
+https://www.kaggle.com/datasets/arthurdfr/trip-advisor-reviews
+
+https://www.kaggle.com/datasets/fahadsyed97/restaurant-reviews
+
+https://www.kaggle.com/datasets/uciml/restaurant-data-with-consumer-ratings?select=geoplaces2.csv
