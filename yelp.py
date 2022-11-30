@@ -51,7 +51,7 @@ root_df = root_df.join(add_to_dict(users_columns, current + '\yelp_academic_data
 
 
 #converts dataframe to csv
-os.system('echo everthing.csv')
+os.system('echo data.csv')
 
-root_df.to_csv('everything.csv')
+root_df.to_csv('data.csv')
 
