@@ -2,13 +2,14 @@ import json
 import pandas as pd
 import kaggle
 import os
+from kaggle.api.kaggle_api_extended import KaggleApi
 
-#TODO: figure out this kaggle api 
 
 current = os.getcwd()
 
-kaggle.api.authenticate()
-kaggle.api.dataset_download_files('Yelp Dataset', path=current, unzip=True)
+api = KaggleApi()
+api.authenticate()
+api.dataset_download_files('yelp-dataset/yelp-dataset', path=current, unzip=True)
 
 #Lists of the columns wanted from each json file
 bus_columns = ['business_id', 'name', 'city', 'stars', 'review_count']
@@ -44,12 +45,13 @@ def add_to_dict(columns, file_path):
 
 #joins all dataframes created for each json. Uses .join to join dataframes that are of differnet length
 
-#TODO: Change '\\temp' to the name of kaggle dataset file
+root_df = add_to_dict(bus_columns, current + '\yelp_academic_dataset_business.json')
+root_df = root_df.join(add_to_dict(reviews_columns, current + '\yelp_dataset\yelp_academic_dataset_review.json'), lsuffix='_business', rsuffix='_review')
+root_df = root_df.join(add_to_dict(users_columns, current + '\yelp_academic_dataset_user.json'), lsuffix='_review', rsuffix='_user')
 
-root_df = add_to_dict(bus_columns, current + '\\temp' + '\yelp_academic_dataset_business.json')
-root_df = root_df.join(add_to_dict(reviews_columns, current + '\\temp' + '\yelp_dataset\yelp_academic_dataset_review.json'), lsuffix='_business', rsuffix='_review')
-root_df = root_df.join(add_to_dict(users_columns, current + '\\temp' + '\yelp_academic_dataset_user.json'), lsuffix='_review', rsuffix='_user')
 
 #converts dataframe to csv
+os.system('echo everthing.csv')
+
 root_df.to_csv('everything.csv')
 
