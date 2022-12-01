@@ -1,12 +1,10 @@
 #!/bin/bash
 
-mkdir temp
-
-mv yelp.py temp
-
-cd temp
-
 git clone #fill in with ML script
+
+mv yelp.py #name of git folder
+
+cd #name of git folder
 
 python yelp.py
 
@@ -18,8 +16,10 @@ mv results.csv ..
 
 mv yelp.py ..
 
+rm -rf .git
+
 cd ..
 
-rm -rf temp
+rm -rf #name of git folder
 
 echo "Finished"
