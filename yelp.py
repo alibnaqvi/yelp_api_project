@@ -57,7 +57,7 @@ root_df = pd.merge(root_df, add_to_dict(users_columns, 'yelp_academic_dataset_us
 
 print('Processed')
 #converts dataframe to csv
-os.system('echo data.csv')
+os.system('touch data.csv')
 print('Converting to csv...')
 root_df.to_csv('data.csv')
 print('Converted')
