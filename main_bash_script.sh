@@ -16,6 +16,8 @@ python trip_adv.py
 
 git clone #fill in with ML script
 
+echo "Running analysis..."
+
 python #fill in with ML script
 
 mv results.csv ..
@@ -27,3 +29,5 @@ mv trip_adv.py ..
 cd ..
 
 rm -rf temp
+
+echo "Finished"
