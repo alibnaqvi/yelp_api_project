@@ -8,13 +8,13 @@ mv trip_adv.py temp
 
 cd temp
 
+git clone #fill in with ML script
+
 python yelp.py
 
 rm data.csv
 
 python trip_adv.py
-
-git clone #fill in with ML script
 
 echo "Running analysis..."
 
