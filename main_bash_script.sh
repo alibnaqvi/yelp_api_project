@@ -2,9 +2,9 @@
 
 mkdir temp
 
-mv yelp.py /temp
+mv yelp.py temp
 
-mv trip_adv.py /temp
+mv trip_adv.py temp
 
 cd temp
 
@@ -18,16 +18,12 @@ git clone #fill in with ML script
 
 python #fill in with ML script
 
-#something with their output file
-#
-#
-#
-#
+mv results.csv ..
 
-mv yelp.py /..
+mv yelp.py ..
 
-mv trip_adv.py /..
+mv trip_adv.py ..
 
-cd /..
+cd ..
 
 rm -rf temp
