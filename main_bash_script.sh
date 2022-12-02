@@ -10,7 +10,7 @@ python yelp.py
 
 echo "Running analysis..."
 
-python #fill in with ML script
+python final_review_algorithm_1_1
 
 mv results.csv ..
 
