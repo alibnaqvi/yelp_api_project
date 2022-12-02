@@ -1,16 +1,21 @@
 #!/bin/bash
 
-git clone #fill in with ML script
+git clone https://github.com/m-yen/Applying-PageRank-to-Resturant-Reviews
 
-mv yelp.py #name of git folder
+mv yelp.py Applying-PageRank-to-Resturant-Reviews
 
-cd #name of git folder
+cd Applying-PageRank-to-Resturant-Reviews
 
 python yelp.py
 
 echo "Running analysis..."
 
-python final_review_algorithm_1_1
+jupyter nbconvert --to script 'final_review_algorithm_1_1.ipynb'
+
+mv final_review_algorithm_1_1.txt final_review_algorithm_1_1.py
+
+python final_review_algorithm_1_1.py
+
 
 mv results.csv ..
 
@@ -20,6 +25,6 @@ rm -rf .git
 
 cd ..
 
-rm -rf #name of git folder
+rm -rf Applying-PageRank-to-Resturant-Reviews
 
 echo "Finished"
