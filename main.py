@@ -1,5 +1,19 @@
 import json
 import pandas as pd
+import kaggle
+import os
+from kaggle.api.kaggle_api_extended import KaggleApi
+
+
+current = os.getcwd()
+
+print('Downloading dataset...')
+
+api = KaggleApi()
+api.authenticate()
+api.dataset_download_files('yelp-dataset/yelp-dataset', path=current, unzip=True)
+
+print('Dataset downloaded successfully')
 
 #Lists of the columns wanted from each json file
 bus_columns = ['business_id', 'name', 'city', 'stars', 'review_count']
@@ -10,10 +24,8 @@ users_columns = ['user_id', 'review_count', 'yelping_since', 'useful', 'funny', 
 def add_to_dict(columns, file_path):
     '''
     Function creates pandas dataframe using json file specified in file_path and elements specified in columns
-
     file_path: Full path (not relative) to json file
     columns: List of column values to extract from json file
-
     '''
 
     temp_df = {}                #temporary dictionary that will be turned into dataframe
@@ -34,10 +46,15 @@ def add_to_dict(columns, file_path):
 
 
 #joins all dataframes created for each json. Uses .join to join dataframes that are of differnet length
-root_df = add_to_dict(bus_columns, R'D:\UC Berkeley\CS Stuff\yeSWEcan\yeSWEcan Final Project\yelp_dataset\yelp_academic_dataset_business.json')
-root_df = root_df.join(add_to_dict(reviews_columns, R'D:\UC Berkeley\CS Stuff\yeSWEcan\yeSWEcan Final Project\yelp_dataset\yelp_academic_dataset_review.json'), lsuffix='_business', rsuffix='_review')
-root_df = root_df.join(add_to_dict(users_columns, R'D:\UC Berkeley\CS Stuff\yeSWEcan\yeSWEcan Final Project\yelp_dataset\yelp_academic_dataset_user.json'), lsuffix='_review', rsuffix='_user')
 
+print('Processing dataset...')
+root_df = add_to_dict(bus_columns, '\yelp_academic_dataset_business.json') 
+root_df = root_df.join(add_to_dict(reviews_columns, '\yelp_dataset\yelp_academic_dataset_review.json'), lsuffix='_business', rsuffix='_review') 
+root_df = root_df.join(add_to_dict(users_columns, '\yelp_academic_dataset_user.json'), lsuffix='_review', rsuffix='_user')
+
+print('Processed')
 #converts dataframe to csv
-root_df.to_csv('everything.csv')
-
+os.system('touch data.csv')
+print('Converting to csv...')
+root_df.to_csv('data.csv')
+print('Converted')
