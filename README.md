@@ -1,4 +1,11 @@
 # Yelp True Review Project
 
 
-#Must have Kaggle API set up, nbconvert installed (can be done with pip), and have jupyter notebook installed
+## Table of contents
+* [General info](#general-info)
+* [Technologies](#technologies)
+* [Setup](#setup)
+
+
+## General info
+This project is simple Lorem ipsum dolor generator.
