@@ -1,15 +1,6 @@
 # Yelp True Review Project
 
 
-## Table of contents
-* [General info](#general-info)
-* [Technologies](#technologies)
-* [Setup](#setup)
-
-
-
-
-
 ## General info
 This project is designed to serve as a simple pipeline to acquire our team's data. It allows users to pull our script and gain our analysis with a single command. The analysis is found at another repo: https://github.com/m-yen/Applying-PageRank-to-Resturant-Reviews
 
